@@ -1,0 +1,150 @@
+$component-name: "c-gallery";
+
+.#{$component-name} {
+  width: 100%;
+  position: relative;
+
+  .container {
+    @include flexContainer();
+  }
+
+  &__cover {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  &__controls {
+    position: absolute;
+    bottom: 10px;
+    height: 30px;
+    width: 100%;
+    @include flexContainer();
+
+    li {
+      width: 10px;
+      height: 10px;
+      border: 1px solid $original-white;
+      border-radius: 50%;
+      background: transparent;
+      margin-right: 14px;
+      cursor: pointer;
+    }
+
+    &-list {
+      display: flex;
+      margin-left: 25%;
+    }
+  }
+
+  &__video {
+    position: relative;
+    @include flexContainer(
+      $direction: column,
+      $align: center
+    );
+
+    i {
+      width: 28px;
+      height: 28px;
+      background: url('../../../public/ic_play_circle_filled_black_24px.svg');
+      background-size: contain;
+      position: absolute;
+      left: 30%;
+      top: 46%;
+      z-index: 5;
+    }
+    img, video {
+      opacity: 0.7;
+      width: 82px;
+      height: 45px;
+      margin-top: 10px;
+    }
+
+    span {
+      color: $original-primary;
+      text-transform: capitalize;
+      display: block;
+
+      @include fontStyle(
+        $size: $original-font-size-small,
+        $weight: $original-font-weight-regular
+      );
+    }
+  }
+
+  &__scrollContent {
+    margin-top: 8px;
+    @include flexContainer($direction: column, $align: center);
+  }
+
+  &__scrollImage {
+    margin-right: 56px;
+    &-item {
+      width: 82px;
+      height: 410px;
+      overflow: hidden;
+      margin-bottom: 9px;
+      div {
+        transition: all 0.4s;
+      }
+    }
+
+    #next, #prev {
+      width: 15px;
+      color: #000000;
+      font-weight: 900;
+    }
+
+    #prev {
+      margin-bottom: 15px;
+      margin-top: 10px;
+    }
+
+    img:not(#video) {
+      width: 82px;
+      height: 94px;
+      opacity: 0.7;
+    }
+
+    #next { transform: rotate(180deg); }
+  }
+
+  @include media('>=desktop') {
+
+    & {
+      width: 50%;
+    }
+
+    &__cover {
+      img {
+        width: 430px;
+        transition: opacity 0.4s ease-in;
+      }
+    }
+
+    @keyframes fadeIn {
+      0% {opacity: 0;}
+      100% {opacity: 1;}
+    }
+
+    &__controls {
+      display: none;
+    }
+
+    & {
+      display: flex;
+    }
+  }
+
+  @include media('<=desktop') {
+    &__scrollImage {
+      display: none;
+    };
+  }
+
+  @include media('<=tablet') {
+    .container {
+      width: calc(50% - 50px);
+    }
+  }
+}
