@@ -1,0 +1,59 @@
+// ==========================================================================
+// COLORS
+// ==========================================================================
+
+$original-primary: #de8f75;
+$original-secondary: #5f75aa;
+$original-green: #32917b;
+$original-strong-green: #327e6c;
+$original-white: #ffffff;
+$original-black: #202020;
+$original-gray: #f2f2f2;
+$original-darkgray: #ebebeb;
+$original-graylight: #e3e3e3;
+$original-graylighter: #AEB6C1;
+$original-gray-common: #cccccc;
+$original-gray-strong: #7f7f7f;
+$original-gray-superstrong: #686868;
+$original-scrollbar-color: #e2e2e2;
+$original-pink: #A9095E;
+$original-brow: #A14830;
+
+// ==========================================================================
+// TYPOGRAPHY
+// ==========================================================================
+
+$original-font-primary: 'Montserrat', sans-serif;
+$original-font-secondary:'Roboto', sans-serif;
+$original-font-size-extra-small: 12px;
+$original-font-size-small: 14px;
+$original-font-size-half-medium: 18px;
+$originalfont-size-medium: 20px;
+$original-font-size-large: 26px;
+$original-font-weight-regular: 400;
+$original-font-weight-bold: bold;
+
+// ==========================================================================
+// MEASURES
+// ==========================================================================
+
+$global-max-width-raw: 780;
+$global-max-width: rem($global-max-width-raw);
+$original-padding: 10px;
+$original-margin-default: 10px;
+
+$global-font-size: rem(18);
+$global-line-height: 1.5;
+$global-radius: rem(6);
+$global-module-size: rem(30);
+
+// ==========================================================================
+// MEDIA QUERY
+// ==========================================================================
+
+$breakpoint-phone-small: 360px;
+$breakpoint-phone-large: 640px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop-small: 1024px;
+$breakpoint-desktop-medium: 1360px;
+$breakpoint-desktop-large: 1920px;
