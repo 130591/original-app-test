@@ -1,0 +1,136 @@
+$component-name: "c-carrosel";
+
+.#{$component-name} {
+  width: 100%;
+  position: relative;
+
+  .container {
+    overflow: hidden;
+  }
+
+  &__list {
+    @include flexContainer();
+    transition: all 0.5s;
+    &-item {
+      margin-right: 14px;
+      img {
+        min-width: 138px;
+      }
+    }
+  }
+
+  &__color-control {
+    display: none;
+    li {
+      width: 13px;
+      height: 13px;
+      margin-left: 5px;
+      border-radius: 50%;
+
+      &:nth-child(2) {
+        background-color: $original-pink;
+      }
+
+      &:nth-child(3) {
+        background-color: $original-brow;
+      }
+
+      &:nth-child(4) {
+        background-color: #000;
+      }
+
+      &:first-child {
+        background-color: $original-black;
+      }
+    }
+  }
+
+  &__price {
+    @include fontStyle(
+      $size: $original-font-size-extra-small,
+      $weight: 500,
+      $height: 1.5
+    );
+    color: $original-black;
+
+    span {
+      display: block;
+    }
+  }
+
+  &__controls {
+    width: 40%;
+    max-width: 160px;
+    @include flexContainer($justify: space-between);
+    margin: 0 auto;
+    margin-top: 50px;
+
+    li { color: $original-secondary; }
+
+    #next, #prev {
+      width: 14px;
+      height: 21px;
+      padding: 10px;
+      background: url('../../../public/seta_.svg') no-repeat;
+      background-size: contain;
+    }
+
+    #next {
+      transform: rotate(180deg);
+    }
+  }
+
+  @media screen and (min-width: 375px) {
+    &__list-item img {
+      width: 170px;
+    }
+  }
+
+  @media screen and (min-width: 410px) {
+    &__list-item img {
+      width: 185px;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    &__list-item img {
+      width: 230px;
+    }
+  }
+
+  @include media('>=desktop') {
+    &__price {
+      font-size: 16px;
+      span {
+        display: none;
+      }
+    }
+
+    &__list {
+      justify-content: space-between;
+      &-item {
+        width: 290px;
+        img {
+         width: 100%;
+        }
+      }
+    }
+
+    &__desc {
+      width: 100%;
+      @include flexContainer($justify: space-between);
+    }
+
+    &__color-control {
+      display: flex;
+    }
+
+    &__controls {
+      #prev,
+      #next {
+        width: 35px;
+        height: 35px;
+      }
+    }
+  };
+};
