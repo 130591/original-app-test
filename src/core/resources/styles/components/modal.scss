@@ -1,0 +1,121 @@
+$component-name: 'c-modal';
+
+.#{$component-name} {
+  width: 100vw;
+  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: $original-secondary;
+    opacity: 0.3;
+}
+
+  &__overlay {
+    width: 100%;
+    position: absolute;
+    min-height: 100%;
+  }
+
+  &__dialog {
+    max-width: 445px;
+    padding: 51px 70px 50px;
+    position: relative;
+    top: 62px;
+    left: 30%;
+    background-color: $original-white;
+    z-index: 999;
+    // transition: all 0.4s;
+    // transform: translate(-50%, -50%);
+
+    .container {
+      width: 100%;
+      height: 100%;
+      @include flexContainer(
+        $direction: column,
+        $justify: space-between,
+        $align: center
+      );
+    }
+
+    img {
+      max-width: 305px;
+    }
+  }
+
+  &__title {
+    margin-top: 11px;
+    margin-bottom: 11px;
+    text-align: center;
+    color: $original-primary;
+    text-transform: uppercase;
+    @include fontStyle(
+      $size: 22px,
+      $height: 1.2em,
+      $weight: $original-font-weight-regular,
+    );
+  }
+
+  &__desc {
+    margin-top: 11px;
+    margin-bottom: 6px;
+    cursor: pointer;
+    color: $original-graylighter;
+    text-align: center;
+    @include fontStyle(
+      $size: $original-font-size-small,
+      $weight: $original-font-weight-regular,
+    );
+  }
+
+  @include media('>=phone') {
+    & {
+      &__dialog {
+        max-width: 290px;
+        left: 13%;
+        padding: 24px 36px 24px;
+      }
+
+      img {
+        max-width: 190px;
+        margin-bottom: 9px;
+      }
+
+      p { margin-top: 6px; }
+
+      &__title {
+        order: -1;
+        @include fontStyle(
+          $size: 16px,
+          $weight: $original-font-weight-regular
+        );
+      }
+    }
+  }
+
+  @include media('>=tablet') {
+    & {
+      &__dialog {
+        max-width: 445px;
+        padding: 51px 70px 50px;
+        left: 31%;
+
+        img {
+          max-width: 305px;
+        }
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  }
+}
