@@ -1,0 +1,292 @@
+$component-name: "c-footer";
+
+.#{$component-name} {
+  width: 100%;
+  margin-top: 62px;
+  border-top: 2px solid $original-graylighter;
+
+  &__links {
+    position: relative;
+
+    &-fast {
+      li {
+        padding: 11px 5px;
+        @include fontStyle(
+          $size: $original-font-size-small,
+          $weight: $original-font-weight-regular
+        );
+
+        color: $original-black;
+        text-align: center;
+        cursor: pointer;
+        transition: all color 0.5s;
+        &:hover {
+          color: $original-primary;
+        }
+      }
+    }
+  }
+
+  &__content {
+    width: 100%;
+  }
+
+  &__inst {
+    width: 100%;
+    transition: all 0.4s;
+  }
+
+  &__fildsContent {
+    width: 100%;
+    @include flexContainer($justify: space-between);
+
+    &:nth-child(1) {
+      width: 80%;
+      margin-right: 10%;
+    }
+
+    input {
+      width: 80%;
+      margin-right: 35px;
+    }
+  }
+
+  &__section {
+    width: 100%;
+    padding: 11px 0;
+    position: relative;
+    z-index: 10;
+    border-bottom: 1px solid $original-graylighter;
+
+    .container {
+      @include flexContainer($justify: space-between, $align: baseline);
+    }
+
+    &__title {
+      @include fontStyle(
+        $size: $original-font-size-small,
+        $weight: $original-font-weight-regular
+      );
+      color: $original-graylighter;
+      text-transform: uppercase;
+    }
+
+    &__icon {
+      width: 10px;
+      height: 10px;
+      font-weight: 600;
+      font-style: initial;
+      color: $original-graylighter;
+    }
+  }
+
+  &__social {
+    width: 100%;
+    padding-top: 22px;
+    @include flexContainer($justify: center);
+
+    li {
+      width: 25px;
+      height: 25px;
+      margin-right: 32px;
+    }
+
+    #f {
+      background: url('../../../public/facebook.svg') no-repeat;
+      background-size: contain;
+      margin-left: 10%;
+    }
+
+    #i {
+      background: url('../../../public/insta.svg') no-repeat;
+      background-size: contain;
+    }
+
+    #p {
+      background: url('../../../public/pinterest.svg') no-repeat;
+      background-size: contain;
+    }
+  }
+
+  &__brands {
+    width: 100%;
+    padding-top: 30px;
+    margin-left: 5%;
+    @include flexContainer($justify: center);
+
+    li {
+      width: 92px;
+      height: 58px;
+    }
+
+    #vtex {
+      background: url('../../../public/vtex-pci-200.png') no-repeat;
+      background-size: contain;
+    }
+
+    #ebit {
+      background: url('../../../public/selo-ebit.png') no-repeat;
+      background-size: contain;
+      margin-left: 32px;
+    }
+  }
+
+  &__bottom {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    background-color: $original-primary;
+    @include flexContainer($direction: column, $align: center);
+
+    P {
+      @include fontStyle(
+        $size: $original-font-size-extra-small,
+        $weight: $original-font-weight-regular,
+        $height: 1.5
+      );
+      color: $original-white;
+    }
+
+    img {
+      width: 94px;
+      height: 21px;
+      margin-top: 20px;
+    }
+  }
+
+  &__news {
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+    &-title {
+      margin-bottom: 10px;
+      @include fontStyle(
+        $size: $original-font-size-half-medium,
+        $weight: $original-font-weight-regular
+      );
+      color: $original-graylighter;
+      text-transform: uppercase;
+      text-align: center;
+    }
+  }
+
+  @include media('>=tablet') {
+    &__bottom {
+      img {
+        display: block;
+        margin: 16px auto 0px;
+      }
+    }
+
+    &__content {
+      .container {
+        width: 100%;
+      }
+    }
+  }
+
+  @include media('>=desktop') {
+    & {
+      position: relative;
+      margin-top: 153px;
+      &__bottom:not(.c-footer__bottom) {
+        @include flexContainer();
+      }
+
+      &__bottom {
+        width: 100%;
+        padding: 30px 0;
+        .container {
+          @include flexContainer($justify: space-between);
+        }
+
+        p { width: 70%; }
+      }
+
+      &__content {
+        margin-top: 0;
+        margin-bottom: 39px;
+        & > .container {
+          display: flex;
+        }
+      }
+
+      &__section {
+        border: none;
+        margin-top: 60px;
+        padding: 11px 5px;
+
+        &__icon { display: none; }
+
+        &__title {
+          @include fontStyle(
+            $size: $original-font-size-extra-small,
+            $weight: $original-font-weight-bold
+          );
+        }
+      }
+
+      &__partners { order: -1;}
+
+      &__social {
+        li { width: 25px;}
+        #f { width: 12px;}
+      }
+
+      &__fildsContent {
+        flex-direction: column;
+        input {
+          width: 100%;
+          margin-right: 0;
+          margin-bottom: 27px;
+        }
+      }
+
+      &__news {
+        position: absolute;
+        top: -155px;
+        right: 30px;
+        width: 293px;
+        height: 293px;
+        border: 2px solid #AEB6C1;
+        padding: 14px;
+        padding-top: 39px;
+        border-radius: 50%;
+        background-color: $original-white;
+
+        &-title {
+          padding: 12px;
+          padding-top: 19px;
+          color: $original-black;
+          font-weight: $original-font-weight-bold;
+          font-size: 16px;
+        }
+
+        & .c-form__field {
+          margin-bottom: 20px;
+        }
+      }
+
+      &__inst {
+        max-width: 240px;
+        & ul {
+          width: 100%;
+        }
+      }
+
+      &__links,
+      &__links-fast {
+        @include flexContainer($direction: column, $align: flex-start);
+
+        li {
+          @include fontStyle(
+            $size: $original-font-size-extra-small,
+            $weight: $original-font-weight-regular
+          );
+        }
+      }
+    }
+  }
+};
+
