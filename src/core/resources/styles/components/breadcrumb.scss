@@ -1,0 +1,38 @@
+$component-name: "c-breadcrumb";
+
+.#{$component-name} {
+  padding: 16px 0;
+  margin-bottom: 11px;
+  .container {
+    @include flexContainer();
+
+    li {
+      @include fontStyle(
+        $size: $original-font-size-extra-small,
+        $weight: $original-font-weight-regular,
+        $height: 1.4
+      );
+
+      color: $original-graylighter;
+      text-transform: capitalize;
+
+      &:nth-child(2n + 1) {
+        margin-right: 5px;
+        &::after {
+          content: '/';
+          width: 4px;
+          color: $original-graylighter;
+          margin-left: 5px;
+        }
+      }
+
+      &:nth-child(2n + 2) {
+        font-weight: bold;
+      }
+    }
+  }
+
+  @include media('<desktop') {
+    display: none;
+  }
+}
