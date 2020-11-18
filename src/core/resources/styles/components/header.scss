@@ -1,0 +1,136 @@
+@import 'base/variables';
+@import 'base/generics/flex-container.scss';
+
+$component-name: 'c-header';
+
+.#{$component-name} {
+  width: 100%;
+  padding: 26px 0;
+  background-color: $original-white;
+
+  .container {
+    @include flexContainer($justify: space-between);
+
+    span {
+      width: 28px;
+      height: 28px;
+      background: url('../../../public/ic_dehaze_black_24px.svg');
+
+      @include media('>tablet') {
+        display: none;
+      }
+    }
+
+    a {
+      @include media('>tablet') {
+        margin: 0 auto;
+      }
+    }
+  }
+
+  &__brand {
+    max-width: 110px;
+    height: 25px;
+
+    @include media('>tablet') {
+      max-width: 148px;
+      height: 34px;
+    }
+  }
+
+  &__nav {
+    width: 100%;
+    border-top: 1px solid $original-gray-common;
+    border-bottom: 1px solid $original-gray-common;
+    padding: 9px 0 5px;
+    .container {
+      @include flexContainer($justify: space-between);
+    }
+
+    &-login {
+      @include fontStyle(
+        $size: $original-font-size-extra-small,
+        $weight: $original-font-weight-regular,
+        $height: 1.4
+      );
+      color: $original-gray-superstrong;
+      text-transform: capitalize;
+      cursor: pointer;
+
+      span {
+        margin-right: 7px;
+      }
+    }
+
+    @include media('<=tablet') {
+      display: none;
+    }
+  }
+
+  &__links {
+    @include flexContainer();
+
+    li {
+      @include fontStyle(
+        $size: $original-font-size-small,
+        $weight: $original-font-weight-regular,
+        $height: 1.4
+      );
+      text-transform: uppercase;
+      color: $original-gray-superstrong;
+      margin-right: 40px;
+      cursor: pointer;
+    }
+  }
+
+  &__explore {
+    max-width: 150px;
+    @include flexContainer($align: center);
+  }
+
+  &__search {
+    width: 97px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid $original-gray-common;
+
+    input {
+      width: 1px;
+      height: 36px;
+      visibility: hidden;
+    }
+
+    .icon-search {
+      width: 21px;
+      height: 21px;
+    }
+
+    button {
+      width: 41px;
+      height: 36px;
+      padding: 6px;
+      color: $original-gray-superstrong;
+      background-color: $original-white;
+      @include fontStyle(
+        $size: $original-font-size-extra-small,
+        $weight: $original-font-weight-regular
+      );
+    }
+  }
+
+  &__shopping {
+    @include flexContainer();
+
+    li {
+      width: 21px;
+      height: 26px;
+      &:nth-child(2n + 2) {
+        margin-left: 22px;
+      }
+    }
+
+    @include media('>tablet') {
+      display: none;
+    }
+  }
+}
