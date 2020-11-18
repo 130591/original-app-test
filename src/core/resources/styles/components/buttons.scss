@@ -1,0 +1,41 @@
+$component-name: "c-btn";
+
+.#{$component-name} {
+  border-radius: $global-radius;
+  color: $original-black;
+  border: 0;
+  padding: 13px 26px;
+  outline: none;
+
+  @include fontStyle(
+    $size: $original-font-size-extra-small,
+    $weight: $original-font-weight-regular,
+    $height: 1.5
+  );
+
+  text-align: center;
+  display: inline-block;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &--default {
+    background: $original-green;
+    color: $original-white;
+    border-radius: 3px;
+
+    &:hover {
+      background: $original-strong-green;
+    }
+  }
+
+  &--primary {
+    background-color: $original-primary;
+    color: $original-white;
+    border-radius: 3px;
+  }
+
+  &--fullscreen {
+    width: 100%;
+    max-width: 100%;
+  }
+}
