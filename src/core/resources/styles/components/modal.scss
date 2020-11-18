@@ -51,6 +51,16 @@ $component-name: 'c-modal';
     }
   }
 
+  &__close {
+    position: absolute;
+    right: 12px;
+    top: 8px;
+    width: 23px;
+    height: 23px;
+    background: url('../../../public/ic_clear_black_24px.svg');
+    background-size: contain;
+  }
+
   &__title {
     margin-top: 11px;
     margin-bottom: 11px;

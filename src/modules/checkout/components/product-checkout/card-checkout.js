@@ -104,7 +104,10 @@ export const Card = () => {
               <li
                 id={number}
                 onClick={(e) => handleSize(e)}
-                style={{ borderColor: number == size ? '#de8f75' : null }}
+                style={{
+                  backgroundColor: number == size ? '#de8f75' : null,
+                  color: number == size ? '#fff' : '#000'
+                }}
               >
                 {number}
               </li>
@@ -144,6 +147,10 @@ export const Card = () => {
       </div>
     </div>
     <Modal ref={ref}>
+      <i
+       className="c-modal__close"
+       onClick={(e) => handleModal(e)}
+      ></i>
       <div className="container">
         <img
           id={products && products[0] ? products[0].id[0] : null}
