@@ -65,13 +65,13 @@ export const GalleryProduct = ({
             <i></i>
             <img id="video" src={img} alt="video" />
           </div>
-          <span id="prev" onClick={() => move(-94)} >^</span>
+          <span id="prev" onClick={() => move(-94)} ></span>
           <HandleContext.Provider
            value={{ show, current }}
           >
             { children }
           </HandleContext.Provider>
-          <span id="next" onClick={() => move(94)}>^</span>
+          <span id="next" onClick={() => move(94)}></span>
         </ul>
       </div>
         <div className="c-gallery__cover">
