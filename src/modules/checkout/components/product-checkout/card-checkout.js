@@ -7,7 +7,7 @@ import { useProductState } from '../../store';
 export const Card = () => {
   const [size, setSize] = useState(null)
   const [color, setColor] = useState(null);
-
+  const [repeat, setRepeat] = useState(false);
   const ref = useRef(null)
 
   const [
@@ -20,6 +20,7 @@ export const Card = () => {
     { addToCart, sumAmount }] = useProductState();
 
   const { products } = stock;
+  const { order } = purchase;
 
   const handleModal = () => {
     ref.current.toggleModal();
@@ -77,7 +78,7 @@ export const Card = () => {
         {products && products[0] ? products[0].cod : null}
       </span>
       <ol className="c-card__choise">
-        <span className="c-card__choise__title">Cor:</span>
+       <span className="c-card__choise__title">Cor: <i>{color && `(${color})` }</i></span>
         <div className="c-card__choise__colors">
           {
           products && products[0] ?
@@ -94,7 +95,7 @@ export const Card = () => {
       </ol>
       <ul className="c-card__size">
         <div className="c-card__size-guide">
-          <span>tamanho:</span>
+          <span>tamanho: <i>{ `(${size || '33'})` }</i> </span>
           <a href="#" alt="guia de medidas" >Guia de medidas</a>
         </div>
         <div className="c-card__size-number">
@@ -136,9 +137,11 @@ export const Card = () => {
       <Button
         className="c-btn--default"
         onPress={handlePurchase}
+        disabled={ order && order.length > 0 ? true : null }
         >
         adicionar à sacola
       </Button>
+        { repeat ? <label>Produto já adicionado</label> : null }
       <div className="c-card__desc">
         <h3>descrição</h3>
         <p>

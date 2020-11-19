@@ -67,6 +67,13 @@ $component-name: "c-card";
         color: $original-black;
         margin-right: 45px;
         text-transform: capitalize;
+
+        i {
+          color: $original-secondary;
+          font-weight: $original-font-weight-regular;
+          font-size: $original-font-size-small;
+          font-style: normal;
+        }
       }
 
       a {
@@ -233,7 +240,7 @@ $component-name: "c-card";
       width: 90%;
       @include flexContainer($justify: space-between);
       span {
-        margin-right: 33%;
+        margin-right: 25%;
       }
     }
 

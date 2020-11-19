@@ -6,6 +6,7 @@ export const Button = ({
   styled,
   className,
   size,
+  disabled
 }) => {
   return (
     <button
@@ -13,6 +14,7 @@ export const Button = ({
       style={{ maxWidth: size == 'large' ? '400px' : '200px' }}
       style={styled}
       onClick={(e) => onPress(e)}
+      disabled={disabled}
     >
       {children}
     </button>
