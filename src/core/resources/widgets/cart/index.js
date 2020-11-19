@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 
 import cover from '../../../public/prod01.png';
 import { Button } from '../buttons';
@@ -77,6 +78,15 @@ export const CardItem = ({
   del,
   handleQuant
 }) => {
+  const [amount, setAmount] = useState(0);
+
+  function handleQuant(value) {
+    if (amount <= 0 && value < 1) return;
+
+    if (value) {
+      setAmount(amount + value)
+    }
+  }
 
   return (
     <li className="c-cart__list-item">
@@ -88,9 +98,9 @@ export const CardItem = ({
        </div>
       </div>
       <ol>
-        <li>-</li>
-        <li>05</li>
-        <li>+</li>
+        <li onClick={() => handleQuant(-1)}>-</li>
+        <li>{amount || '00'}</li>
+        <li onClick={() => handleQuant(1)}>+</li>
       </ol>
       <i onClick={() => del(id)}>x</i>
     </li>
