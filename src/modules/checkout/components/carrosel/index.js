@@ -5,7 +5,6 @@ import React, {
   Children,
 } from 'react';
 
-import img from '../../../../core/public/prod02.png';
 import { Image } from '../../../../core/resources/widgets/image';
 
 export const Carrosel = ({

@@ -5,11 +5,12 @@ import React, {
   useContext,
   cloneElement,
   Children,
-  createRef
+  createRef,
 } from 'react';
 
 import { Image } from '../../../../core/resources/widgets/image';
 import img from '../../../../core/public/prod02.png';
+import { Loading } from '../../../../core/resources/widgets/loading';
 
 const HandleContext = createContext();
 
@@ -75,11 +76,12 @@ export const GalleryProduct = ({
         </ul>
       </div>
         <div className="c-gallery__cover">
-          <Image
+          { !active.photo && <Loading /> }
+         <Image
             bindRef={ref}
             path={active.photo}
             className={''}
-            legend={'calçados'}
+            legend={active.photo ? 'calçados' : null}
           />
           <div className="c-gallery__controls">
           <div className="c-gallery__video"></div>
