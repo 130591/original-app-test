@@ -3,9 +3,13 @@ import React, {
   useEffect,
   useState,
   Children,
+  forwardRef,
+  cloneElement,
+  createRef
 } from 'react';
 
 import { Image } from '../../../../core/resources/widgets/image';
+import { useIsMobile } from '../../hooks/useIsMobile';
 
 export const Carrosel = ({
   responsive,
@@ -13,19 +17,41 @@ export const Carrosel = ({
 }) => {
   const childrens = useMemo(() => Children.count(children), [children]);
 
+  const [size, setSize] = useState({ width: 0, height: 0 });
   const [active, setActive] = useState(0);
   const [items, setItems] = useState(childrens || 6);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile] = useIsMobile();
+
+  const refMain = createRef(null);
+  const refC = createRef(null);
+
+  useEffect(() => {
+    window.addEventListener("resize", updateDimensions);
+
+    return () => window.removeEventListener("resize", updateDimensions);
+  }, []);
 
   useEffect(() => {
     responsive.map((dsize, i) => {
       if (dsize[i].device >= window.innerWidth)
        setItems(dsize[i].item)
-
-       if (window.innerWidth <= 600) setIsMobile(true)
       }
     )
-  }, [window.innerWidth])
+  }, [isMobile])
+
+  useEffect(() => {
+    if (refC && refC.current) {
+      refC.current.style.width = `${items * (isMobile ? 175 : 315)}px`;
+      refC.current.style.transform = `translate3d(${ active }px, 0, 0)`;
+    }
+  }, [active])
+
+  function updateDimensions() {
+    let windowWidth = typeof window !== "undefined" ? window.innerWidth : 0;
+    let windowHeight = typeof window !== "undefined" ? window.innerHeight : 0;
+
+    setSize({ width: windowWidth, height: windowHeight });
+  }
 
   function movieLeft(value) {
     if (active <= (items * 300) && active >= (`-${items * 300}`)) {
@@ -42,9 +68,9 @@ export const Carrosel = ({
   function render() {
     const childClone = Children.map(children, (child, i) => {
       if (i <= items) {
-        return React.cloneElement(child, {
-          tabindex: items === i ? 0 : -1
-        });
+        return cloneElement(child,
+          i === 0 ? { ref: refMain } : {}
+        );
       }
     });
 
@@ -54,13 +80,7 @@ export const Carrosel = ({
   return (
     <div className="c-carrosel">
       <div className="container">
-        <ul
-          className="c-carrosel__list"
-          style={{
-            width: `${items * (isMobile ? 175 : 315)}px`,
-            transform: `translate3d(${ active }px, 0, 0)` }
-          }
-        >
+        <ul ref={refC} className="c-carrosel__list">
           {render()}
         </ul>
         <ol className="c-carrosel__controls">
@@ -73,13 +93,15 @@ export const Carrosel = ({
   );
 };
 
-export const ImageCarrosel = ({
-  path,
-  value,
-  description
-}) => {
+export const ImageCarrosel = forwardRef((props, ref) => {
+  const {
+    path,
+    value,
+    description
+  } = props;
+
   return (
-    <li className="c-carrosel__list-item">
+    <li className="c-carrosel__list-item" ref={ref}>
       <Image path={path} name={description} legend={description} />
       <div className="c-carrosel__desc">
         <label className="c-carrosel__price">
@@ -95,4 +117,4 @@ export const ImageCarrosel = ({
       </div>
     </li>
   );
-}
+})
