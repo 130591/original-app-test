@@ -1,5 +1,8 @@
-import React from 'react';
-import { useState } from 'react';
+import React, {
+  createRef,
+  useState,
+  useEffect
+} from 'react';
 
 import cover from '../../../public/prod01.png';
 import { Button } from '../buttons';
@@ -10,6 +13,15 @@ export const Cart = ({
   delItem
 }) => {
   const { show, activeMenu } = config;
+  const refCart = createRef();
+
+  useEffect(() => {
+    if (refCart && refCart.current) {
+      refCart.current.style.transform = activeMenu
+      ? `translate3d(0, 0, 0)`
+      : `translate3d(100%, 0, 0)`;
+    }
+  }, [activeMenu])
 
   function handleTotal() {
     if (data) {
@@ -18,11 +30,7 @@ export const Cart = ({
   }
 
   return (
-    <aside className="c-cart"
-      style={{
-       transform: activeMenu ? `translate3d(0, 0, 0)`
-       : `translate3d(100%, 0, 0)` }}
-      >
+    <aside className="c-cart" ref={refCart}>
       <header className="c-cart-header">
         <div className="container">
           <h3 className="c-cart__title">
@@ -56,8 +64,9 @@ export const Cart = ({
       <div className="c-cart__checkout">
         <div className="container">
           <label>
-            <span>total: {`${handleTotal()},00`}</span>
-            <p>até 3x de R$: 49,90 sem juros</p>
+            <span>total: {`${handleTotal() * data.order.length || 0},00`}</span>
+            <p>até 3x de R$: {
+              `${(handleTotal() / 3).toFixed(2)}`} sem juros</p>
           </label>
           <Button
             className="c-btn--default"
