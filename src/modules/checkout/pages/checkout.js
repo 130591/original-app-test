@@ -13,14 +13,21 @@ import { GalleryProduct, Thumbnail } from '../components/product-checkout/galler
 import { useGetProduct, useProductState } from '../store';
 
 export const CheckoutPage = () => {
-  const [[{stock, dispatch }]] = useProductState()
+  const [[
+    {stock, dispatch },
+    { purchase, dispatch2 }],
+    { delToCart }] = useProductState();
+
   useGetProduct(dispatch);
 
   const { products }  = stock;
 
   return (
     <>
-    <Header />
+    <Header
+      data={purchase}
+      actions={ (id) => delToCart(id, dispatch2) }
+    />
       <ul className="c-breadcrumb">
         <div className="container">
           <li>home</li>
