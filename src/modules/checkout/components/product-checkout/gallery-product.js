@@ -8,8 +8,9 @@ import React, {
   createRef,
 } from 'react';
 
-import { Image } from '../../../../core/resources/widgets/image';
 import img from '../../../../core/public/prod02.png';
+
+import { Image } from '../../../../core/resources/widgets/image';
 import { Loading } from '../../../../core/resources/widgets/loading';
 
 const HandleContext = createContext();
@@ -33,6 +34,9 @@ export const GalleryProduct = ({
   }, [covers]);
 
   function move(value) {
+    if (value && current > 0) return;
+    if (value && current < 0 ) return;
+
     if (value) setCurrent(current + value);
   }
 
@@ -52,7 +56,8 @@ export const GalleryProduct = ({
             return item
           }
           return;
-        })
+         }
+        )
       })
     }
   }
@@ -66,7 +71,11 @@ export const GalleryProduct = ({
             <i></i>
             <img id="video" src={img} alt="video" />
           </div>
-          <span id="prev" onClick={() => move(-94)} ></span>
+          <span
+           id="prev"
+           disabled={ current <= 0 ? true : false }
+           onClick={() => move(-94)}
+           ></span>
           <HandleContext.Provider
            value={{ show, current }}
           >
@@ -80,7 +89,6 @@ export const GalleryProduct = ({
          <Image
             bindRef={ref}
             path={active.photo}
-            className={''}
             legend={active.photo ? 'calçados' : null}
           />
           <div className="c-gallery__controls">
@@ -89,7 +97,8 @@ export const GalleryProduct = ({
             {images ? images.map((image, i) =>
               <li id={i}
                 onClick={(e) =>  handleCarrosel(e)}
-                style={{ background: active.position == i ? '#de8f75' : null}}
+                style={{
+                  opacity: active.position == i ? 1 : 0}}
                 >
               </li>
             ) : null }
@@ -103,6 +112,13 @@ export const GalleryProduct = ({
 
 export const Thumbnail = ({ children }) => {
  const { show, current } = useContext(HandleContext);
+ const ref = createRef(null);
+
+ useEffect(() => {
+  if (ref && ref.current) {
+    ref.current.style.transform = `translate3d(0px, ${current}px, 0px)`
+  }
+ }, [current])
 
  function render () {
   const childClone = Children.map(children, child => {
@@ -118,7 +134,7 @@ export const Thumbnail = ({ children }) => {
     <li
       className="c-gallery__scrollImage-item"
     >
-      <div style={{ transform: `translate3d(0px, ${current}px, 0px)` }}>
+      <div ref={ref}>
        {render()}
       </div>
     </li>
