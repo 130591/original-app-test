@@ -6,14 +6,13 @@ import logo from '../../../public/logo-original-io-footer.svg';
 
 import { Image } from '../image';
 import { Cart } from '../cart';
-import { useProductState } from '../../../../modules/checkout/store';
 
 export const Header = ({
-  children
+  children,
+  data,
+  actions
 }) => {
   const [activeMenu, setActiveMenu] = useState(false);
-
-  const [[{ stock }, { purchase, dispatch2 }], { delToCart, sumAmount }] = useProductState();
 
   function show() {
     setActiveMenu(!activeMenu);
@@ -23,8 +22,8 @@ export const Header = ({
     <>
     <Cart
       config={ { activeMenu, show } }
-      data={purchase}
-      delItem={(id) => delToCart(id, dispatch2)}
+      data={data}
+      delItem={actions}
     />
     <header className="c-header">
       <div className="container">
@@ -67,7 +66,7 @@ export const Header = ({
           </div>
           <div className="c-header__cart">
             <Image path={cart} legend={'cart'} onPress={show} />
-            <span>{ purchase && purchase.order ? purchase.order.length : 0 }</span>
+            <span>{ data && data.order ? data.order.length : 0 }</span>
           </div>
         </div>
       </div>

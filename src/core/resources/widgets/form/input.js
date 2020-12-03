@@ -15,9 +15,11 @@ export const Input = ({
   });
 
   useEffect(() => {
-    setState({ ...state, onFocus: onFocus });
-    setState({ ...state, onBlur: onBlur });
-    setState({ ...state, autoFocus: autoFocus });
+    setState({ 
+      onFocus: onFocus, 
+      onBlur: onBlur, 
+      autoFocus: autoFocus 
+    });
 
   }, [onFocus, onBlur, autoFocus]);
 
