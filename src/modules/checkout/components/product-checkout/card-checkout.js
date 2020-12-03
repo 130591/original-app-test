@@ -138,6 +138,7 @@ export const Card = () => {
         className="c-btn--default"
         onPress={handlePurchase}
         disabled={ order && order.length > 0 ? true : null }
+        style={{ opacity: order && order.length > 0 ? '0.6' : '1' }}
         >
         adicionar à sacola
       </Button>
